@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  # Frontend (dev with hot reload)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: digidittos-frontend-dev
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_APP_NAME: Digidittos CMS
+      NEXT_PUBLIC_API_URL: http://localhost:5000/api/v1
+    volumes:
+      - ./app:/app/app
+      - ./components:/app/components
+      - ./lib:/app/lib
+      - ./models:/app/models
+    command: npm run dev
+    networks:
+      - digidittos-frontend-network
+
+networks:
+  digidittos-frontend-network:
+    driver: bridge
