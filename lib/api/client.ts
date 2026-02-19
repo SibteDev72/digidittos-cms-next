@@ -25,8 +25,9 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && !window.location.pathname.startsWith("/login")) {
         localStorage.removeItem("token");
+        document.cookie = "auth-token=; path=/; max-age=0; SameSite=Lax";
         window.location.href = "/login";
       }
     }

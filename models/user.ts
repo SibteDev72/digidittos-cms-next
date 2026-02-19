@@ -4,6 +4,7 @@ export interface User {
   email: string;
   role: "admin" | "editor" | "author" | "viewer";
   avatar?: string;
+  isActive: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -19,8 +20,27 @@ export interface RegisterData {
   password: string;
 }
 
+export interface CreateUserData {
+  name: string;
+  email: string;
+  password: string;
+  role?: "admin" | "editor" | "author" | "viewer";
+  isActive?: boolean;
+}
+
+export interface UpdateUserData {
+  name?: string;
+  email?: string;
+  password?: string;
+  role?: "admin" | "editor" | "author" | "viewer";
+  isActive?: boolean;
+}
+
 export interface AuthResponse {
   success: boolean;
-  token: string;
-  user: User;
+  message: string;
+  data: {
+    user: User;
+    token: string;
+  };
 }
