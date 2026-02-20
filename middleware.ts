@@ -23,6 +23,8 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/blogs/:path*",
+    "/teams/:path*",
     "/users/:path*",
     "/content/:path*",
     "/media/:path*",

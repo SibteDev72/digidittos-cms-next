@@ -20,6 +20,20 @@ export const API_ENDPOINTS = {
     UPLOAD: "/media/upload",
     BY_ID: (id: string) => `/media/${id}`,
   },
+  BLOGS: {
+    BASE: "/blogs",
+    PUBLISHED: "/blogs/published",
+    TAGS: "/blogs/tags",
+    BY_ID: (id: string) => `/blogs/${id}`,
+    BY_SLUG: (slug: string) => `/blogs/slug/${slug}`,
+  },
+  TEAMS: {
+    BASE: "/teams",
+    PUBLIC: "/teams/public",
+    REORDER: "/teams/reorder",
+    BY_ID: (id: string) => `/teams/${id}`,
+    BY_SLUG: (slug: string) => `/teams/slug/${slug}`,
+  },
   SETTINGS: {
     BASE: "/settings",
   },
