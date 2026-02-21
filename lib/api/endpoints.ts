@@ -34,6 +34,13 @@ export const API_ENDPOINTS = {
     BY_ID: (id: string) => `/teams/${id}`,
     BY_SLUG: (slug: string) => `/teams/slug/${slug}`,
   },
+  CASE_STUDIES: {
+    BASE: "/case-studies",
+    PUBLISHED: "/case-studies/published",
+    TAGS: "/case-studies/tags",
+    BY_ID: (id: string) => `/case-studies/${id}`,
+    BY_SLUG: (slug: string) => `/case-studies/slug/${slug}`,
+  },
   SETTINGS: {
     BASE: "/settings",
   },
