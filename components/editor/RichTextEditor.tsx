@@ -37,8 +37,8 @@ function ToolbarButton({
       className={cn(
         "rounded px-2 py-1 text-sm font-medium transition-colors",
         active
-          ? "bg-gray-900 text-white"
-          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+          ? "bg-primary text-white"
+          : "text-gray-600 hover:bg-gray-100 hover:text-secondary",
         disabled && "cursor-not-allowed opacity-40"
       )}
     >
@@ -69,7 +69,7 @@ function Toolbar({ editor }: { editor: ReturnType<typeof useEditor> }) {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-0.5 border-b border-gray-200 bg-gray-50 px-2 py-1.5">
+    <div className="flex flex-wrap items-center gap-0.5 border-b border-gray-200 bg-secondary-50 px-2 py-1.5">
       {/* Text formatting */}
       <ToolbarButton
         onClick={() => editor.chain().focus().toggleBold().run()}
@@ -260,7 +260,7 @@ export default function RichTextEditor({
   });
 
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-300 focus-within:border-gray-900 focus-within:ring-1 focus-within:ring-gray-900">
+    <div className="overflow-hidden rounded-lg border border-gray-300 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
       <Toolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

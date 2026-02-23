@@ -114,7 +114,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary" />
       </div>
     );
   }
@@ -144,7 +144,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="Enter blog post title"
                 />
               </div>
@@ -166,7 +166,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   value={excerpt}
                   onChange={(e) => setExcerpt(e.target.value)}
                   maxLength={300}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="Brief summary (auto-generated from content if left blank)"
                 />
                 <p className="mt-1 text-xs text-gray-400">{excerpt.length}/300</p>
@@ -176,7 +176,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
 
           {/* SEO Section */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">SEO Settings</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">SEO Settings</h3>
             <div className="space-y-4">
               <div>
                 <label htmlFor="metaTitle" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -188,7 +188,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   value={metaTitle}
                   onChange={(e) => setMetaTitle(e.target.value)}
                   maxLength={70}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="SEO title (auto-generated from title if left blank)"
                 />
                 <p className="mt-1 text-xs text-gray-400">{metaTitle.length}/70</p>
@@ -203,7 +203,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   value={metaDescription}
                   onChange={(e) => setMetaDescription(e.target.value)}
                   maxLength={160}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="SEO description (auto-generated from content if left blank)"
                 />
                 <p className="mt-1 text-xs text-gray-400">{metaDescription.length}/160</p>
@@ -217,7 +217,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   type="text"
                   value={metaKeywordsInput}
                   onChange={(e) => setMetaKeywordsInput(e.target.value)}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="keyword1, keyword2, keyword3"
                 />
                 <p className="mt-1 text-xs text-gray-400">Comma-separated keywords</p>
@@ -230,7 +230,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
         <div className="space-y-5">
           {/* Publish Settings */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">Publish</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">Publish</h3>
             <div className="space-y-4">
               <div>
                 <label htmlFor="status" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -240,7 +240,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                   id="status"
                   value={status}
                   onChange={(e) => setStatus(e.target.value as typeof status)}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
@@ -252,7 +252,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submitting
                     ? "Saving..."
@@ -274,12 +274,12 @@ export default function BlogForm({ blogId }: BlogFormProps) {
 
           {/* Featured Image */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">Featured Image</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">Featured Image</h3>
             <input
               type="text"
               value={featuredImage}
               onChange={(e) => setFeaturedImage(e.target.value)}
-              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               placeholder="Image URL (e.g. /uploads/image.jpg)"
             />
             {featuredImage && (
@@ -298,12 +298,12 @@ export default function BlogForm({ blogId }: BlogFormProps) {
 
           {/* Tags */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">Tags</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">Tags</h3>
             <input
               type="text"
               value={tagsInput}
               onChange={(e) => setTagsInput(e.target.value)}
-              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               placeholder="tag1, tag2, tag3"
             />
             <p className="mt-1 text-xs text-gray-400">Comma-separated tags</p>
@@ -312,7 +312,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                 {parseTags(tagsInput).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700"
+                    className="inline-flex rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-medium text-primary-dark"
                   >
                     {tag}
                   </span>

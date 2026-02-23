@@ -2,7 +2,6 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  role: "admin" | "editor" | "author" | "viewer";
   avatar?: string;
   isActive: boolean;
   createdAt: string;
@@ -24,7 +23,6 @@ export interface CreateUserData {
   name: string;
   email: string;
   password: string;
-  role?: "admin" | "editor" | "author" | "viewer";
   isActive?: boolean;
 }
 
@@ -32,7 +30,6 @@ export interface UpdateUserData {
   name?: string;
   email?: string;
   password?: string;
-  role?: "admin" | "editor" | "author" | "viewer";
   isActive?: boolean;
 }
 

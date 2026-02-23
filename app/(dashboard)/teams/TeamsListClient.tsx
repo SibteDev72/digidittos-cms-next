@@ -81,12 +81,12 @@ export default function TeamsListClient() {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Team</h1>
+          <h1 className="text-2xl font-bold text-secondary">Team</h1>
           <p className="mt-1 text-sm text-gray-500">{total} total members</p>
         </div>
         <Link
           href="/teams/create"
-          className="rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark"
         >
           Add Member
         </Link>
@@ -105,7 +105,7 @@ export default function TeamsListClient() {
             placeholder="Search by name or role..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
           <button
             type="submit"
@@ -120,7 +120,7 @@ export default function TeamsListClient() {
             setStatusFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         >
           <option value="">All Status</option>
           <option value="true">Active</option>
@@ -131,7 +131,7 @@ export default function TeamsListClient() {
       <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary" />
           </div>
         ) : members.length === 0 ? (
           <div className="py-12 text-center text-sm text-gray-500">
@@ -139,7 +139,7 @@ export default function TeamsListClient() {
           </div>
         ) : (
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-gray-200 bg-gray-50">
+            <thead className="border-b border-gray-200 bg-secondary-50">
               <tr>
                 <th className="px-4 py-3 font-medium text-gray-600">Member</th>
                 <th className="px-4 py-3 font-medium text-gray-600">Role</th>
@@ -164,12 +164,12 @@ export default function TeamsListClient() {
                           }}
                         />
                       ) : (
-                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-200 text-xs font-semibold text-gray-600">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-50 text-xs font-semibold text-primary-dark">
                           {member.name.charAt(0).toUpperCase()}
                         </div>
                       )}
                       <div>
-                        <p className="font-medium text-gray-900">{member.name}</p>
+                        <p className="font-medium text-secondary">{member.name}</p>
                         <p className="text-xs text-gray-400">/{member.slug}</p>
                       </div>
                     </div>
@@ -180,7 +180,7 @@ export default function TeamsListClient() {
                       {member.socials?.slice(0, 3).map((social, i) => (
                         <span
                           key={i}
-                          className="inline-flex rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600"
+                          className="inline-flex rounded bg-primary-50 px-1.5 py-0.5 text-xs text-primary-dark"
                         >
                           {PLATFORM_LABELS[social.platform] || social.platform}
                         </span>
@@ -255,7 +255,7 @@ export default function TeamsListClient() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="mx-4 w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-gray-900">Delete Team Member</h3>
+            <h3 className="text-lg font-semibold text-secondary">Delete Team Member</h3>
             <p className="mt-2 text-sm text-gray-600">
               Are you sure you want to delete this team member? This action cannot be undone.
             </p>

@@ -11,7 +11,6 @@ export default function CreateUserForm() {
     name: "",
     email: "",
     password: "",
-    role: "viewer" as "admin" | "editor" | "author" | "viewer",
     isActive: true,
   });
   const [errors, setErrors] = useState<string[]>([]);
@@ -81,7 +80,7 @@ export default function CreateUserForm() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
             placeholder="John Doe"
           />
         </div>
@@ -100,7 +99,7 @@ export default function CreateUserForm() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
             placeholder="user@example.com"
           />
         </div>
@@ -119,33 +118,12 @@ export default function CreateUserForm() {
             required
             value={formData.password}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
             placeholder="Min 8 chars, uppercase, lowercase, number, special"
           />
           <p className="mt-1 text-xs text-gray-400">
             Must be at least 8 characters with uppercase, lowercase, number, and special character.
           </p>
-        </div>
-
-        <div>
-          <label
-            htmlFor="role"
-            className="mb-1.5 block text-sm font-medium text-gray-700"
-          >
-            Role
-          </label>
-          <select
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
-          >
-            <option value="viewer">Viewer</option>
-            <option value="author">Author</option>
-            <option value="editor">Editor</option>
-            <option value="admin">Admin</option>
-          </select>
         </div>
 
         <div className="flex items-center gap-2">
@@ -155,7 +133,7 @@ export default function CreateUserForm() {
             type="checkbox"
             checked={formData.isActive}
             onChange={handleChange}
-            className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
           />
           <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
             Active
@@ -167,7 +145,7 @@ export default function CreateUserForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
         >
           {submitting ? "Creating..." : "Create User"}
         </button>

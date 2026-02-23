@@ -120,7 +120,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary" />
       </div>
     );
   }
@@ -152,7 +152,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     maxLength={100}
-                    className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     placeholder="e.g. John Doe"
                   />
                 </div>
@@ -167,7 +167,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                     maxLength={100}
-                    className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                    className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     placeholder="e.g. CEO & Founder"
                   />
                 </div>
@@ -183,7 +183,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   maxLength={1000}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="A brief bio about this team member..."
                 />
                 <p className="mt-1 text-xs text-gray-400">{bio.length}/1000</p>
@@ -194,7 +194,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
           {/* Social Links */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-gray-900">Social Links</h3>
+              <h3 className="text-sm font-semibold text-secondary">Social Links</h3>
               <button
                 type="button"
                 onClick={addSocial}
@@ -213,7 +213,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                     <select
                       value={social.platform}
                       onChange={(e) => updateSocial(index, "platform", e.target.value)}
-                      className="w-36 rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                      className="w-36 rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     >
                       {PLATFORM_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>
@@ -225,7 +225,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                       type="url"
                       value={social.url}
                       onChange={(e) => updateSocial(index, "url", e.target.value)}
-                      className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                      className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                       placeholder="https://..."
                     />
                     <button
@@ -246,7 +246,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
         <div className="space-y-5">
           {/* Settings */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">Settings</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">Settings</h3>
             <div className="space-y-4">
               <div>
                 <label htmlFor="isActive" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -256,7 +256,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                   id="isActive"
                   value={isActive ? "true" : "false"}
                   onChange={(e) => setIsActive(e.target.value === "true")}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   <option value="true">Active</option>
                   <option value="false">Inactive</option>
@@ -273,7 +273,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                   min={0}
                   value={displayOrder}
                   onChange={(e) => setDisplayOrder(parseInt(e.target.value, 10) || 0)}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
                 <p className="mt-1 text-xs text-gray-400">Lower numbers appear first</p>
               </div>
@@ -282,7 +282,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submitting
                     ? "Saving..."
@@ -302,12 +302,12 @@ export default function TeamForm({ memberId }: TeamFormProps) {
 
           {/* Photo */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold text-gray-900">Photo</h3>
+            <h3 className="mb-4 text-sm font-semibold text-secondary">Photo</h3>
             <input
               type="text"
               value={photo}
               onChange={(e) => setPhoto(e.target.value)}
-              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               placeholder="Image URL (e.g. /uploads/photo.jpg)"
             />
             {photo && (

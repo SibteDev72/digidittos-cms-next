@@ -14,7 +14,6 @@ export default function EditUserForm({ userId }: { userId: string }) {
     name: "",
     email: "",
     password: "",
-    role: "viewer" as "admin" | "editor" | "author" | "viewer",
     isActive: true,
   });
   const [errors, setErrors] = useState<string[]>([]);
@@ -29,7 +28,6 @@ export default function EditUserForm({ userId }: { userId: string }) {
           name: res.data.name,
           email: res.data.email,
           password: "",
-          role: res.data.role,
           isActive: res.data.isActive,
         });
       } catch {
@@ -60,7 +58,6 @@ export default function EditUserForm({ userId }: { userId: string }) {
       const updateData: UpdateUserData = {
         name: formData.name,
         email: formData.email,
-        role: formData.role,
         isActive: formData.isActive,
       };
 
@@ -90,7 +87,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary" />
       </div>
     );
   }
@@ -101,7 +98,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
         <p className="text-red-700">User not found.</p>
         <Link
           href="/users"
-          className="mt-3 inline-block text-sm font-medium text-gray-900 underline"
+          className="mt-3 inline-block text-sm font-medium text-secondary underline"
         >
           Back to Users
         </Link>
@@ -139,7 +136,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
             required
             value={formData.name}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -157,7 +154,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
             required
             value={formData.email}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
 
@@ -174,33 +171,12 @@ export default function EditUserForm({ userId }: { userId: string }) {
             type="password"
             value={formData.password}
             onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
             placeholder="Leave blank to keep current password"
           />
           <p className="mt-1 text-xs text-gray-400">
             Leave blank to keep existing password. New passwords must be at least 8 characters with uppercase, lowercase, number, and special character.
           </p>
-        </div>
-
-        <div>
-          <label
-            htmlFor="role"
-            className="mb-1.5 block text-sm font-medium text-gray-700"
-          >
-            Role
-          </label>
-          <select
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
-          >
-            <option value="viewer">Viewer</option>
-            <option value="author">Author</option>
-            <option value="editor">Editor</option>
-            <option value="admin">Admin</option>
-          </select>
         </div>
 
         <div className="flex items-center gap-2">
@@ -210,7 +186,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
             type="checkbox"
             checked={formData.isActive}
             onChange={handleChange}
-            className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
           />
           <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
             Active
@@ -222,7 +198,7 @@ export default function EditUserForm({ userId }: { userId: string }) {
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
         >
           {submitting ? "Saving..." : "Save Changes"}
         </button>

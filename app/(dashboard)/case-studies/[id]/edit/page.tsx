@@ -15,7 +15,7 @@ export default async function EditCaseStudyPage({
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Edit Case Study</h1>
+        <h1 className="text-2xl font-bold text-secondary">Edit Case Study</h1>
         <p className="mt-1 text-sm text-gray-500">
           Update your case study
         </p>

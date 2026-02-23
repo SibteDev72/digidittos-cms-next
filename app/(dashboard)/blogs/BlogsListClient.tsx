@@ -77,12 +77,12 @@ export default function BlogsListClient() {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Blogs</h1>
+          <h1 className="text-2xl font-bold text-secondary">Blogs</h1>
           <p className="mt-1 text-sm text-gray-500">{total} total posts</p>
         </div>
         <Link
           href="/blogs/create"
-          className="rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark"
         >
           New Post
         </Link>
@@ -101,7 +101,7 @@ export default function BlogsListClient() {
             placeholder="Search by title or tags..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+            className="flex-1 rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
           <button
             type="submit"
@@ -116,7 +116,7 @@ export default function BlogsListClient() {
             setStatusFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="rounded-lg border border-gray-300 px-3.5 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         >
           <option value="">All Status</option>
           <option value="draft">Draft</option>
@@ -128,7 +128,7 @@ export default function BlogsListClient() {
       <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-primary" />
           </div>
         ) : blogs.length === 0 ? (
           <div className="py-12 text-center text-sm text-gray-500">
@@ -136,7 +136,7 @@ export default function BlogsListClient() {
           </div>
         ) : (
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-gray-200 bg-gray-50">
+            <thead className="border-b border-gray-200 bg-secondary-50">
               <tr>
                 <th className="px-4 py-3 font-medium text-gray-600">Title</th>
                 <th className="px-4 py-3 font-medium text-gray-600">Status</th>
@@ -150,7 +150,7 @@ export default function BlogsListClient() {
               {blogs.map((blog) => (
                 <tr key={blog._id} className="hover:bg-gray-50">
                   <td className="max-w-xs px-4 py-3">
-                    <p className="truncate font-medium text-gray-900">
+                    <p className="truncate font-medium text-secondary">
                       {blog.title}
                     </p>
                     <p className="truncate text-xs text-gray-400">/{blog.slug}</p>
@@ -170,7 +170,7 @@ export default function BlogsListClient() {
                       {blog.tags?.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600"
+                          className="inline-flex rounded bg-primary-50 px-1.5 py-0.5 text-xs text-primary-dark"
                         >
                           {tag}
                         </span>
@@ -238,7 +238,7 @@ export default function BlogsListClient() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="mx-4 w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-gray-900">Delete Blog</h3>
+            <h3 className="text-lg font-semibold text-secondary">Delete Blog</h3>
             <p className="mt-2 text-sm text-gray-600">
               Are you sure you want to delete this blog post? This action cannot be undone.
             </p>

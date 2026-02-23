@@ -52,7 +52,7 @@ export default function LoginForm() {
           autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           placeholder="you@example.com"
         />
       </div>
@@ -71,7 +71,7 @@ export default function LoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+          className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           placeholder="Enter your password"
         />
       </div>
@@ -79,7 +79,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {submitting ? "Signing in..." : "Sign In"}
       </button>

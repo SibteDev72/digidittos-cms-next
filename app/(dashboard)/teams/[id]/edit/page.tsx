@@ -15,7 +15,7 @@ export default async function EditTeamPage({
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Edit Team Member</h1>
+        <h1 className="text-2xl font-bold text-secondary">Edit Team Member</h1>
         <p className="mt-1 text-sm text-gray-500">Update team member details</p>
       </div>
       <TeamForm memberId={id} />

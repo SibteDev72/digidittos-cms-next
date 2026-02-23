@@ -6,10 +6,3 @@ export const PAGINATION = {
   DEFAULT_LIMIT: 10,
   MAX_LIMIT: 100,
 } as const;
-
-export const ROLES = {
-  ADMIN: "admin",
-  EDITOR: "editor",
-  AUTHOR: "author",
-  VIEWER: "viewer",
-} as const;

@@ -9,11 +9,9 @@ const navItems = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "Blogs", href: "/blogs" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Team", href: "/teams", adminOnly: true },
-  { label: "Content", href: "/content" },
-  { label: "Media", href: "/media" },
-  { label: "Users", href: "/users", adminOnly: true },
-  { label: "Settings", href: "/settings", adminOnly: true },
+  { label: "Team", href: "/teams" },
+  { label: "Users", href: "/users" },
+  { label: "Settings", href: "/settings" },
 ];
 
 export default function Sidebar() {
@@ -21,54 +19,49 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
 
   return (
-    <aside className="hidden w-64 flex-shrink-0 border-r border-gray-200 bg-white md:flex md:flex-col">
-      <div className="border-b border-gray-200 p-6">
+    <aside className="hidden w-64 flex-shrink-0 bg-secondary md:flex md:flex-col">
+      <div className="border-b border-white/10 p-6">
         <Link href="/dashboard">
-          <h2 className="text-lg font-bold text-gray-900">Digidittos CMS</h2>
+          <h2 className="text-lg font-bold text-white">Digidittos CMS</h2>
         </Link>
       </div>
 
       <nav className="flex-1 px-3 py-4">
         <ul className="space-y-1">
-          {navItems
-            .filter((item) => !item.adminOnly || user?.role === "admin")
-            .map((item) => {
-              const isActive =
-                pathname === item.href || pathname.startsWith(item.href + "/");
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
 
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                      isActive
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary text-white"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
       {user && (
-        <div className="border-t border-gray-200 p-4">
+        <div className="border-t border-white/10 p-4">
           <div className="mb-3">
-            <p className="truncate text-sm font-medium text-gray-900">
+            <p className="truncate text-sm font-medium text-white">
               {user.name}
             </p>
-            <p className="truncate text-xs text-gray-500">{user.email}</p>
-            <span className="mt-1 inline-flex rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium capitalize text-gray-600">
-              {user.role}
-            </span>
+            <p className="truncate text-xs text-gray-400">{user.email}</p>
           </div>
           <button
             onClick={logout}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="w-full rounded-lg border border-white/20 px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white"
           >
             Sign Out
           </button>

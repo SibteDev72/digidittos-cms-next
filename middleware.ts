@@ -27,8 +27,6 @@ export const config = {
     "/case-studies/:path*",
     "/teams/:path*",
     "/users/:path*",
-    "/content/:path*",
-    "/media/:path*",
     "/settings/:path*",
     "/login",
     "/register",
