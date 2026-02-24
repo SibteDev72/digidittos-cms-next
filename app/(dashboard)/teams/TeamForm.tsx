@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { teamsApi } from "@/lib/api/services/teams";
 import type { CreateTeamData, UpdateTeamData, TeamSocial } from "@/models/team";
+import { swalSuccess, swalError } from "@/lib/swal";
 
 const PLATFORM_OPTIONS = [
   { value: "facebook", label: "Facebook" },
@@ -28,7 +29,6 @@ export default function TeamForm({ memberId }: TeamFormProps) {
   const isEditing = Boolean(memberId);
   const [loading, setLoading] = useState(isEditing);
   const [submitting, setSubmitting] = useState(false);
-  const [errors, setErrors] = useState<string[]>([]);
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -52,7 +52,7 @@ export default function TeamForm({ memberId }: TeamFormProps) {
         setDisplayOrder(member.displayOrder);
         setIsActive(member.isActive);
       } catch {
-        setErrors(["Failed to load team member"]);
+        swalError("Failed to load team member");
       } finally {
         setLoading(false);
       }
@@ -76,7 +76,6 @@ export default function TeamForm({ memberId }: TeamFormProps) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setErrors([]);
     setSubmitting(true);
 
     try {
@@ -100,18 +99,16 @@ export default function TeamForm({ memberId }: TeamFormProps) {
         await teamsApi.create(data as CreateTeamData);
       }
 
+      swalSuccess(isEditing ? "Team member updated!" : "Team member added!");
       router.push("/teams");
     } catch (err: unknown) {
       const axiosError = err as {
         response?: { data?: { message?: string; errors?: string[] } };
       };
-      if (axiosError.response?.data?.errors) {
-        setErrors(axiosError.response.data.errors);
-      } else {
-        setErrors([
-          axiosError.response?.data?.message || "Failed to save team member",
-        ]);
-      }
+      const msg = axiosError.response?.data?.errors?.join(", ")
+        || axiosError.response?.data?.message
+        || "Failed to save team member";
+      swalError("Save failed", msg);
     } finally {
       setSubmitting(false);
     }
@@ -127,14 +124,6 @@ export default function TeamForm({ memberId }: TeamFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {errors.length > 0 && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3">
-          {errors.map((error, i) => (
-            <p key={i} className="text-sm text-red-700">{error}</p>
-          ))}
-        </div>
-      )}
-
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Content - Left Column */}
         <div className="space-y-5 lg:col-span-2">

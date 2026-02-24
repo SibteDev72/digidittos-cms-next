@@ -6,6 +6,8 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { blogsApi } from "@/lib/api/services/blogs";
 import type { CreateBlogData, UpdateBlogData } from "@/models/blog";
+import { swalSuccess, swalError } from "@/lib/swal";
+import TagInput from "@/components/ui/TagInput";
 
 // Dynamic import to avoid SSR issues with TipTap
 const RichTextEditor = dynamic(
@@ -22,17 +24,16 @@ export default function BlogForm({ blogId }: BlogFormProps) {
   const isEditing = Boolean(blogId);
   const [loading, setLoading] = useState(isEditing);
   const [submitting, setSubmitting] = useState(false);
-  const [errors, setErrors] = useState<string[]>([]);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
-  const [tagsInput, setTagsInput] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [status, setStatus] = useState<"draft" | "published" | "archived">("draft");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
-  const [metaKeywordsInput, setMetaKeywordsInput] = useState("");
+  const [metaKeywords, setMetaKeywords] = useState<string[]>([]);
 
   useEffect(() => {
     if (!blogId) return;
@@ -44,13 +45,13 @@ export default function BlogForm({ blogId }: BlogFormProps) {
         setContent(blog.content);
         setExcerpt(blog.excerpt || "");
         setFeaturedImage(blog.featuredImage || "");
-        setTagsInput(blog.tags?.join(", ") || "");
+        setTags(blog.tags || []);
         setStatus(blog.status);
         setMetaTitle(blog.seo?.metaTitle || "");
         setMetaDescription(blog.seo?.metaDescription || "");
-        setMetaKeywordsInput(blog.seo?.metaKeywords?.join(", ") || "");
+        setMetaKeywords(blog.seo?.metaKeywords || []);
       } catch {
-        setErrors(["Failed to load blog post"]);
+        swalError("Failed to load blog post");
       } finally {
         setLoading(false);
       }
@@ -58,21 +59,11 @@ export default function BlogForm({ blogId }: BlogFormProps) {
     fetchBlog();
   }, [blogId]);
 
-  const parseTags = (input: string) =>
-    input
-      .split(",")
-      .map((t) => t.trim().toLowerCase())
-      .filter(Boolean);
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setErrors([]);
     setSubmitting(true);
 
     try {
-      const tags = parseTags(tagsInput);
-      const metaKeywords = parseTags(metaKeywordsInput);
-
       const data: CreateBlogData | UpdateBlogData = {
         title,
         content,
@@ -94,18 +85,16 @@ export default function BlogForm({ blogId }: BlogFormProps) {
         await blogsApi.create(data as CreateBlogData);
       }
 
+      swalSuccess(isEditing ? "Blog post updated!" : "Blog post created!");
       router.push("/blogs");
     } catch (err: unknown) {
       const axiosError = err as {
         response?: { data?: { message?: string; errors?: string[] } };
       };
-      if (axiosError.response?.data?.errors) {
-        setErrors(axiosError.response.data.errors);
-      } else {
-        setErrors([
-          axiosError.response?.data?.message || "Failed to save blog post",
-        ]);
-      }
+      const msg = axiosError.response?.data?.errors?.join(", ")
+        || axiosError.response?.data?.message
+        || "Failed to save blog post";
+      swalError("Save failed", msg);
     } finally {
       setSubmitting(false);
     }
@@ -121,14 +110,6 @@ export default function BlogForm({ blogId }: BlogFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {errors.length > 0 && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3">
-          {errors.map((error, i) => (
-            <p key={i} className="text-sm text-red-700">{error}</p>
-          ))}
-        </div>
-      )}
-
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Content - Left Column */}
         <div className="space-y-5 lg:col-span-2">
@@ -209,18 +190,10 @@ export default function BlogForm({ blogId }: BlogFormProps) {
                 <p className="mt-1 text-xs text-gray-400">{metaDescription.length}/160</p>
               </div>
               <div>
-                <label htmlFor="metaKeywords" className="mb-1.5 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-700">
                   Meta Keywords
                 </label>
-                <input
-                  id="metaKeywords"
-                  type="text"
-                  value={metaKeywordsInput}
-                  onChange={(e) => setMetaKeywordsInput(e.target.value)}
-                  className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="keyword1, keyword2, keyword3"
-                />
-                <p className="mt-1 text-xs text-gray-400">Comma-separated keywords</p>
+                <TagInput tags={metaKeywords} onChange={setMetaKeywords} placeholder="Add a keyword..." />
               </div>
             </div>
           </div>
@@ -299,26 +272,7 @@ export default function BlogForm({ blogId }: BlogFormProps) {
           {/* Tags */}
           <div className="rounded-xl border border-gray-200 bg-white p-6">
             <h3 className="mb-4 text-sm font-semibold text-secondary">Tags</h3>
-            <input
-              type="text"
-              value={tagsInput}
-              onChange={(e) => setTagsInput(e.target.value)}
-              className="block w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              placeholder="tag1, tag2, tag3"
-            />
-            <p className="mt-1 text-xs text-gray-400">Comma-separated tags</p>
-            {tagsInput && (
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {parseTags(tagsInput).map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-medium text-primary-dark"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <TagInput tags={tags} onChange={setTags} placeholder="Add a tag..." />
           </div>
         </div>
       </div>

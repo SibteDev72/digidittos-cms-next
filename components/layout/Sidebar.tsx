@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/lib/context/AuthContext";
 import { cn } from "@/lib/utils/cn";
+import { swalConfirm } from "@/lib/swal";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard" },
@@ -17,6 +18,16 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    const confirmed = await swalConfirm(
+      "Sign Out",
+      "Are you sure you want to sign out?",
+      "Yes, sign out",
+      "#00859b"
+    );
+    if (confirmed) logout();
+  };
 
   return (
     <aside className="hidden w-64 flex-shrink-0 bg-secondary md:flex md:flex-col">
@@ -60,7 +71,7 @@ export default function Sidebar() {
             <p className="truncate text-xs text-gray-400">{user.email}</p>
           </div>
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="w-full rounded-lg border border-white/20 px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white"
           >
             Sign Out
