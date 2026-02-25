@@ -17,6 +17,7 @@ interface AuthContextType {
   loading: boolean;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -65,6 +66,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(userData);
   }, []);
 
+  const refreshUser = useCallback(async () => {
+    try {
+      const res = await apiClient.get(API_ENDPOINTS.AUTH.ME);
+      setUser(res.data.data);
+    } catch {
+      // silently fail — user state stays as is
+    }
+  }, []);
+
   const logout = useCallback(() => {
     localStorage.removeItem("token");
     removeTokenCookie();
@@ -73,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );
