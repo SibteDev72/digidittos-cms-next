@@ -31,6 +31,7 @@ export interface UpdateUserData {
   email?: string;
   password?: string;
   isActive?: boolean;
+  avatar?: string;
 }
 
 export interface AuthResponse {
