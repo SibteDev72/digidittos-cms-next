@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils/cn";
 import { swalConfirm } from "@/lib/swal";
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard" },
+  // { label: "Dashboard", href: "/dashboard" },
   { label: "Blogs", href: "/blogs" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Team", href: "/teams" },
@@ -24,7 +24,7 @@ export default function Sidebar() {
       "Sign Out",
       "Are you sure you want to sign out?",
       "Yes, sign out",
-      "#00859b"
+      "#00859b",
     );
     if (confirmed) logout();
   };
